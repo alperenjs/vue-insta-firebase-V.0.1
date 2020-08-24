@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>vue-insta</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="/dist/build.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>vue-insta</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+  <script src="/dist/build.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDWLjsCeUIJAtwu0X5oSVgjSHfP5hq5hDI",
+      authDomain: "vue-insta-9f903.firebaseapp.com",
+      databaseURL: "https://vue-insta-9f903.firebaseio.com",
+      projectId: "vue-insta-9f903",
+      storageBucket: "vue-insta-9f903.appspot.com",
+      messagingSenderId: "244098576455",
+      appId: "1:244098576455:web:85e78939098d9e55304162",
+      measurementId: "G-Y9WPX7T38H"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+</body>
+
 </html>

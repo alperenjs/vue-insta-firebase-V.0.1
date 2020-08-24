@@ -1,30 +1,42 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
-    <h1>{{ userName }}</h1>
+    <upload></upload>
 
-    <input type="text" v-model="userName" placeholder="username" />
+    <div>
+      <img src="./assets/logo.png" />
+      <h1>{{ userName }}</h1>
 
-    <input type="text" v-model="mail" placeholder="mail" />
-    <button class="btn btn-primary" @click="saveUser">Kaydet</button>
-    <button class="btn btn-primary" @click="getUsers">getir</button>
-    <hr />
-    <ul class="list-group">
-      <li :key="user.userName" v-for="user in userList">
-        <span>{{user.userName}}</span>
-        <hr />
-        <span>{{user.mail}}</span>
-        <button @click="deleteUser(user.key)">sil</button>
-      </li>
-    </ul>
+      <input type="text" v-model="userName" placeholder="username" />
+
+      <input type="text" v-model="mail" placeholder="mail" />
+      <button class="btn btn-primary" @click="saveUser">Kaydet</button>
+      <button class="btn btn-primary" @click="getUsers">getir</button>
+      <hr />
+      <ul class="list-group">
+        <li :key="user.userName" v-for="user in userList">
+          <span>{{user.userName}}</span>
+          <hr />
+          <span>{{user.mail}}</span>
+          <hr />
+          <img :src="user.img" />
+          <button @click="deleteUser(user.key)">sil</button>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import Upload from "./components/Upload";
+
 export default {
   name: "app",
+  components: {
+    Upload,
+  },
   data() {
     return {
+      img: null,
       userName: null,
       mail: null,
       userList: [],
@@ -58,6 +70,7 @@ export default {
             key: key,
             userName: data[key].userName,
             mail: data[key].mail,
+            img: data[key].img,
           });
         }
       });
