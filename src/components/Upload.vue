@@ -65,7 +65,9 @@ export default {
         () => {
           this.uploadValue = 100;
           storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.picture = url;
+            this.picture = url; /*fotoğrafı link olarak this.picture içine
+            yapıştırıp gösterebiliyor / benim de bunu database'e url olarak
+            kaydetmem lazım ki her post fotoyou gösterebilsin */
           });
         }
       );
