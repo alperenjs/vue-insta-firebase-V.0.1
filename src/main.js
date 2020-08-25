@@ -3,6 +3,8 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import firebase from 'firebase'
 
+
+
 firebase.initializeApp({
   apiKey: "AIzaSyDWLjsCeUIJAtwu0X5oSVgjSHfP5hq5hDI",
   authDomain: "vue-insta-9f903.firebaseapp.com",
@@ -28,14 +30,9 @@ Vue.http.options.root = "https://vue-insta-9f903.firebaseio.com"
 //   })
 // })
 
-
-
-
-
-
 new Vue({
   el: '#app',
-  render: h => h(App)
+  render: h => h(App),
 })
 
 /* firebase id https://vue-insta-9f903.firebaseio.com/ */
