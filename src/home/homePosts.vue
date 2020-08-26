@@ -114,7 +114,7 @@ export default {
 <style>
 .post-wrapper {
   padding-top: 40px;
-  width: 642px;
+  width: 609px;
   /* margin-left: 15rem; */
   float: right;
 }
