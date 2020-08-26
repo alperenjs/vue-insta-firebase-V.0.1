@@ -1,7 +1,10 @@
 <template>
   <div id="app">
+    <!-- router link çalşyor menünün altında kalıyor -->
     <MainHeader />
-    <Post></Post>
+    <!-- <Post></Post> -->
+    <router-view></router-view>
+    <!--router view rootla gidilen syfanın içeriğini basyıor-->
   </div>
 </template>
 
