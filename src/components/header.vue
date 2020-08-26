@@ -122,9 +122,9 @@ export default {
 </script>
 
 <style >
-.mainHeader {
+/* .mainHeader {
   padding-bottom: 90px;
-}
+} */
 .navbar {
   top: 0;
   background-color: #fff !important;

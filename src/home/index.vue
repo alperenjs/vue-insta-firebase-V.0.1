@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="generalBackground">
     <recommendation></recommendation>
     <homePosts></homePosts>
   </div>
@@ -18,4 +18,8 @@ export default {
 </script>
 
 <style>
+.generalBackground {
+  background: rgb(250, 250, 250) !important;
+  padding-top: 50px;
+}
 </style>
