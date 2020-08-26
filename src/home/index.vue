@@ -1,7 +1,15 @@
 <template>
   <div id="home" class="generalBackground">
-    <recommendation></recommendation>
-    <homePosts></homePosts>
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <homePosts></homePosts>
+        </div>
+        <div class="col-4">
+          <recommendation></recommendation>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -177,6 +177,14 @@ input:focus {
   background: rgba(var(--b3f, 250, 250, 250), 1);
   border-radius: 4px;
 }
+
+/*Media Queries */
+@media only screen and (max-width: 700px) {
+  .menuSearch {
+    display: none !important;
+  }
+}
+/*Media Queries */
 </style>
 
 

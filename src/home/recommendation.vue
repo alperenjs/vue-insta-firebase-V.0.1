@@ -89,20 +89,19 @@ export default {
 
 
 <style>
-.recomWrapper {
+/* .recomWrapper {
   margin: auto !important;
-}
+} */
 
 .box {
-  display: block;
-  clear: both;
   background: rgb(250, 250, 250) !important;
   height: 100vh;
-  width: 300px;
-  float: right;
+  width: 350px;
+  /* float: right; */
   position: fixed;
-  right: 10px;
+  /* right: 10px; */
   margin-top: 50px;
+  /* margin-right: 20rem; */
 }
 
 .recomHeader {
@@ -118,7 +117,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-right: 15px;
-  padding-left: 50px;
+  padding-left: 12px;
 }
 .recom-Profile-img img {
   width: 60px;
@@ -206,4 +205,12 @@ export default {
   color: gray;
   opacity: 0.6;
 }
+
+/*media queries */
+@media only screen and (max-width: 1000px) {
+  .recomWrapper {
+    display: none;
+  }
+}
+/*media queries */
 </style>

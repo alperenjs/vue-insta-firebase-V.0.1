@@ -115,7 +115,8 @@ export default {
 .post-wrapper {
   padding-top: 40px;
   width: 642px;
-  margin: auto !important;
+  /* margin-left: 15rem; */
+  float: right;
 }
 
 .post-card {
@@ -236,4 +237,20 @@ input::placeholder {
   outline: none;
   color: rgb(21 153 239);
 }
+
+/*Media Queries */
+@media only screen and (max-width: 1000px) {
+  .post-wrapper {
+    float: none;
+  }
+
+  .col-8 {
+    max-width: none !important;
+  }
+
+  .post-wrapper {
+    width: auto !important;
+  }
+}
+/*Media Queries */
 </style>
