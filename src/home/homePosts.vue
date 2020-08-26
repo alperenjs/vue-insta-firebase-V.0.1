@@ -3,7 +3,9 @@
     <div class="post-card">
       <div class="post-header row">
         <div class="post-Profile-img">
-          <img src="../assets/alperen2.jpg" />
+          <div>
+            <img src="../assets/alperen2.jpg" />
+          </div>
         </div>
         <div class="post-Profile-username">
           <h6>alperenszz</h6>
@@ -113,8 +115,8 @@ export default {
 
 <style>
 .post-wrapper {
-  padding-top: 40px;
-  width: 609px;
+  padding-top: 30px;
+  width: 726px;
   /* margin-left: 15rem; */
   float: right;
 }
@@ -144,9 +146,19 @@ export default {
   padding-right: 15px;
   padding-left: 50px;
 }
+.avatar-color {
+  padding: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    219deg,
+    rgba(184, 63, 140, 1) 0%,
+    rgba(237, 158, 90, 1) 100%
+  );
+}
 .post-Profile-img img {
   width: 40px;
   border-radius: 50%;
+  border: 2px solid white;
 }
 .post-settings {
   margin-left: auto;
@@ -239,6 +251,11 @@ input::placeholder {
 }
 
 /*Media Queries */
+@media only screen and (max-width: 1199px) {
+  .post-wrapper {
+    width: 608px !important;
+  }
+}
 @media only screen and (max-width: 1000px) {
   .post-wrapper {
     float: none;
@@ -252,5 +269,6 @@ input::placeholder {
     width: auto !important;
   }
 }
+
 /*Media Queries */
 </style>

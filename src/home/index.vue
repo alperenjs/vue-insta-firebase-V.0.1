@@ -35,10 +35,4 @@ export default {
   background: rgb(250, 250, 250) !important;
   padding-top: 80px;
 }
-.denemeRow {
-  border: 1px solid red;
-}
-.col-8 {
-  border: 1px solid green;
-}
 </style>
