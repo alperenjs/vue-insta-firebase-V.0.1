@@ -100,8 +100,8 @@
       <div class="post-footer post-add-comment">
         <form>
           <input placeholder="Yorum ekle..." />
-          <button>Paylaş</button>
         </form>
+        <button>Paylaş</button>
       </div>
     </div>
   </div>
@@ -210,10 +210,11 @@ export default {
 .post-add-comment button {
   background: none;
   border: none;
+  margin-left: auto;
 }
 
 .post-add-comment input {
-  width: 550px;
+  /* width: 550px; */
   border: none;
 }
 

@@ -196,4 +196,19 @@ button:focus {
   text-decoration: none;
   outline: none;
 }
+@media only screen and (max-width: 767px) {
+  .internal {
+    width: 15%;
+  }
+}
+@media only screen and (max-width: 456px) {
+  .internal {
+    width: 18%;
+  }
+}
+@media only screen and (max-width: 385px) {
+  .internal {
+    width: 23%;
+  }
+}
 </style>

@@ -100,7 +100,6 @@ export default {
   /* float: right; */
   position: fixed;
   /* right: 10px; */
-  margin-top: 50px;
   /* margin-right: 20rem; */
 }
 
@@ -163,10 +162,13 @@ export default {
   align-items: center;
 }
 .recom-list-user-username h6 {
-  margin-bottom: 0px !important;
+  margin-bottom: -4px !important;
+  font-size: 15px !important;
 }
 .recom-list-user-username span {
   color: gray;
+  font-size: 13px !important;
+  margin-top: 0px !important;
 }
 
 .recom-list-user-img {
@@ -183,8 +185,9 @@ export default {
 }
 .follow a {
   text-decoration: none;
-  letter-spacing: -0.5px;
-  font-weight: 500;
+  letter-spacing: 0px;
+  font-size: 14px;
+  font-weight: 400;
   color: #0095f6 !important;
 }
 .recom-list-footer {
