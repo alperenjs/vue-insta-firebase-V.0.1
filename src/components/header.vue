@@ -55,7 +55,7 @@
           </div>
         </router-link>
         <router-link to="/discover">
-          <div class="navList-item">
+          <div class="hideIconForMobil navList-item">
             <svg
               aria-label="Kişiler Bul"
               class="_8-yf5"
@@ -72,7 +72,7 @@
           </div>
         </router-link>
         <router-link to="/notifications">
-          <div class="navList-item">
+          <div class="hideIconForMobil navList-item">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -182,6 +182,15 @@ input:focus {
 @media only screen and (max-width: 700px) {
   .menuSearch {
     display: none !important;
+  }
+}
+@media screen and (max-width: 370px) {
+  .myCol {
+    width: 307px;
+  }
+
+  .hideIconForMobil {
+    display: none;
   }
 }
 /*Media Queries */
