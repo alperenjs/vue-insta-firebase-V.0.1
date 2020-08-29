@@ -91,24 +91,33 @@
             </svg>
           </div>
         </router-link>
-        <router-link to="/profil">
-          <div class="navList-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-circle"
-            >
-              <circle cx="12" cy="12" r="10" />
-            </svg>
+
+        <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="navList-item">
+          <div class="myDropDown dropdown-menu">
+            <router-link to="/profil">
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-user-circle-o" aria-hidden="true">&nbsp; Profil</i>
+              </a>
+            </router-link>
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" href="#">Çıkış Yap</a>
           </div>
-        </router-link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="black"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-circle"
+          >
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+        </div>
       </div>
     </nav>
   </div>
@@ -122,9 +131,30 @@ export default {
 </script>
 
 <style >
+.dropdown-item {
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  opacity: 0.8;
+}
+
+.dropdown-item:hover {
+  list-style: none;
+  text-decoration: none;
+}
+.dropdown-item:active {
+  background: #fafafa;
+  color: black;
+}
+.myDropDown {
+  left: unset !important;
+  width: fit-content !important;
+  right: 28px !important;
+}
 /* .mainHeader {
   padding-bottom: 90px;
 } */
+
 .navbar {
   top: 0;
   background-color: #fff !important;
