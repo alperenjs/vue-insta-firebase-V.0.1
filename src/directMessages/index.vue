@@ -41,13 +41,15 @@
             </span>
           </div>
         </div>
-        <div class="chatbody">
-          <div class="chatmessages">
-            <p class="chatMessage chatReceiver">selam gençler</p>
-
-            <p class="chatMessage">hoşgeldin dostum</p>
-
-            <p class="chatMessage chatReceiver">hoşbldk cigerim</p>
+        <div id="chatbox">
+          <div id="chatmessages">
+            <div class="sender">
+              <div class="senderImg">
+                <img src="../assets/alperen2.jpg" />
+              </div>
+              <div class="senderMsg">Hi Jack</div>
+            </div>
+            <div class="receiver">Hey Alperen</div>
           </div>
         </div>
         <div class="messageController">
@@ -206,29 +208,49 @@ input::placeholder {
   text-align: left !important;
   opacity: 0.8;
 }
-
-.chatbody {
-  overflow-y: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.chatMessage {
+#chatbox {
+  overflow: none;
   position: relative;
-  font-size: 16px;
-  padding: 10px;
+  width: 100%;
+  height: calc(100% - 130px);
+}
+#chatmessages {
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+#chatmessages div {
   background-color: #ffff;
   border: 1px solid #efefef;
-  border-radius: 20px;
-  margin-bottom: 5px;
-  margin-top: 5px;
   width: fit-content;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
 }
 
-.chatReceiver {
+#chatmessages .receiver {
   margin-left: auto;
   border: none;
   background-color: #efefef;
+  padding: 6px 10px 6px 10px !important;
+}
+
+.sender {
+  display: flex;
+  padding: 5px 2px 5px 2px !important;
+}
+.senderMsg {
+  border: none !important;
+}
+.senderImg {
+  display: flex !important;
+  border: none !important;
+}
+.senderImg img {
+  border: none !important;
+  width: 20px;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 768px) {
