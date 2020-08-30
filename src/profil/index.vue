@@ -34,6 +34,88 @@
           </div>
         </div>
       </div>
+
+      <div class="row profil-stories-row">
+        <div class="col storiesWrapper">
+          <div class="buttons">
+            <div class="left">
+              <button class="myButton" v-on:click="scrollLeft" id="left-button">
+                <span>&#60;</span>
+              </button>
+            </div>
+            <div class="right">
+              <button class="myButton" v-on:click="scrollRight" id="right-button">
+                <span>&#62;</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="center profil-center" ref="content" id="content">
+            <div class="internal">
+              <div class="story-profil-img post-Profile-img">
+                <div class="row">
+                  <img src="../assets/s1.jpg" />
+                </div>
+                <div class="row">
+                  <span class="story-username">notionof</span>
+                </div>
+              </div>
+            </div>
+            <div class="internal">
+              <div class="story-profil-img post-Profile-img">
+                <div class="row">
+                  <img src="../assets/s2.jpg" />
+                </div>
+                <div class="row">
+                  <span class="story-username">helolo32</span>
+                </div>
+              </div>
+            </div>
+            <div class="internal">
+              <div class="story-profil-img post-Profile-img">
+                <div class="row">
+                  <img src="../assets/s3.jpg" />
+                </div>
+                <div class="row">
+                  <span class="story-username">myinsta</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row submenu-row">
+        <div class="col line"></div>
+      </div>
+
+      <div class="row submenu-list">
+        <div class="submenu">
+          <i class="fa fa-th" aria-hidden="true">
+            &nbsp;
+            <span>GÖNDERİLER</span>
+          </i>
+        </div>
+        <div class="submenu">
+          <i class="fa fa-television" aria-hidden="true">
+            &nbsp;
+            <span>IGTV</span>
+          </i>
+        </div>
+        <div class="submenu">
+          <i class="fa fa-bookmark-o" aria-hidden="true">
+            &nbsp;
+            <span>KAYDEDİLENLER</span>
+          </i>
+        </div>
+        <div class="submenu">
+          <i class="fa fa-tag" aria-hidden="true">
+            &nbsp;
+            <span>ETİKETLENENLER</span>
+          </i>
+        </div>
+      </div>
+
       <!-- <router-link to="/profilePosts">
         <span>gönderiler</span>
       </router-link>
@@ -55,6 +137,14 @@
 <script>
 export default {
   name: "profil",
+  methods: {
+    scrollLeft() {
+      this.$refs.content.scrollLeft -= 300;
+    },
+    scrollRight() {
+      this.$refs.content.scrollLeft += 300;
+    },
+  },
 };
 </script>
 
@@ -82,7 +172,7 @@ export default {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  margin-bottom: 44px;
+  margin-bottom: 44px !important;
 }
 .profile-img {
   float: left;
@@ -140,5 +230,122 @@ export default {
   font-size: 15px;
   font-weight: 600;
   color: #262626;
+}
+
+/*  profil stories kısmı  */
+.center {
+  scroll-behavior: smooth !important;
+}
+
+.storiesWrapper {
+  height: 100px;
+}
+
+button:focus {
+  outline: 0;
+}
+.myButton {
+  border: none;
+  border-radius: 999px;
+  background: black;
+  opacity: 0.3;
+}
+.myButton span {
+  text-align: center;
+  justify-content: center;
+  padding: 2px 2px;
+  font-weight: 600;
+  color: white;
+}
+.left {
+  margin-top: 40px;
+  float: left;
+  z-index: 20;
+  position: absolute;
+  margin-left: 20px;
+}
+.right {
+  margin-top: 40px;
+  float: right;
+  z-index: 20;
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
+}
+
+.internal {
+  z-index: 10;
+  width: 12%;
+  height: 100%;
+
+  display: inline-block;
+}
+
+.center {
+  border: none;
+  background-color: #fff;
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin: 1px;
+  overflow: hidden;
+  /*will change this to hidden later to deny scolling to user*/
+  white-space: nowrap;
+}
+
+.profile-center {
+  height: 100%;
+}
+.story-profil-img {
+  padding-left: 41px !important;
+  margin-top: 6px !important;
+  display: block !important;
+}
+.story-profil-img img {
+  width: 75px !important;
+  border-radius: 50%;
+  border: 1.3px solid #dbdbdb;
+}
+.story-profil-img .row {
+  justify-content: center;
+}
+.story-username {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.myButton:active {
+  text-decoration: none;
+  outline: none;
+}
+
+/*  profil stories kısmı  */
+
+/* line */
+
+.line {
+  border-bottom: 1px solid #dbdbdb;
+  padding-top: 60px;
+}
+
+.submenu-list {
+  display: flex;
+  justify-content: center;
+}
+.submenu {
+  margin-right: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 15px;
+  color: gray;
+  opacity: 0.8;
+}
+/* line */
+@media only screen and (max-width: 562px) {
+  .headerRight {
+    margin-left: auto;
+  }
 }
 </style>

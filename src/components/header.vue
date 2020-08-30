@@ -177,6 +177,7 @@ export default {
 }
 .navList .navList-item {
   margin-left: 22px;
+  cursor: pointer;
 }
 .brandContent {
   justify-content: center;
