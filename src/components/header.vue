@@ -94,8 +94,8 @@
 
         <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="navList-item">
           <div class="myDropDown dropdown-menu">
-            <router-link to="/profil">
-              <a class="dropdown-item" href="#">
+            <router-link to="/profilePosts">
+              <a class="dropdown-item">
                 <i class="fa fa-user-circle-o" aria-hidden="true">&nbsp; Profil</i>
               </a>
             </router-link>

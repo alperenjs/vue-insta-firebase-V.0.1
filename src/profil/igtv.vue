@@ -1,8 +1,14 @@
-<template>
-  <div>
-    <h1>burası igtv</h1>
+
+  <template>
+  <div class="container">
+    <div class="content">
+      <i class="fa fa-television" aria-hidden="true"></i>
+      <br />
+      <span>Henüz hiç gönderi yok</span>
+    </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -10,5 +16,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.content {
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 100;
+}
 </style>

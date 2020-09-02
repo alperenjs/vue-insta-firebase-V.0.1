@@ -84,7 +84,19 @@
           </div>
         </div>
       </div>
-
+      <!--- media query display--->
+      <div class="row after-numbers-row">
+        <span class="numbers">
+          <span class="data">110</span> gönderi
+        </span>
+        <span class="numbers">
+          <span class="data">593</span> takipçi
+        </span>
+        <span class="numbers">
+          <span class="data">60</span> takip
+        </span>
+      </div>
+      <!--- media query display--->
       <div class="row submenu-row">
         <div class="col line"></div>
       </div>
@@ -98,24 +110,30 @@
             </i>
           </div>
         </router-link>
-        <div class="submenu" @click="selected = 2" :class="{active:selected==2}">
-          <i class="fa fa-television" aria-hidden="true">
-            &nbsp;
-            <span>IGTV</span>
-          </i>
-        </div>
-        <div class="submenu" @click="selected = 3" :class="{active:selected==3}">
-          <i class="fa fa-bookmark-o" aria-hidden="true">
-            &nbsp;
-            <span>KAYDEDİLENLER</span>
-          </i>
-        </div>
-        <div class="submenu" @click="selected = 4" :class="{active:selected==4}">
-          <i class="fa fa-tag" aria-hidden="true">
-            &nbsp;
-            <span>ETİKETLENENLER</span>
-          </i>
-        </div>
+        <router-link to="/igtv">
+          <div class="submenu" @click="selected = 2" :class="{active:selected==2}">
+            <i class="fa fa-television" aria-hidden="true">
+              &nbsp;
+              <span>IGTV</span>
+            </i>
+          </div>
+        </router-link>
+        <router-link to="/savedPosts">
+          <div class="submenu" @click="selected = 3" :class="{active:selected==3}">
+            <i class="fa fa-bookmark-o" aria-hidden="true">
+              &nbsp;
+              <span>KAYDEDİLENLER</span>
+            </i>
+          </div>
+        </router-link>
+        <router-link to="/taggedPosts">
+          <div class="submenu" @click="selected = 4" :class="{active:selected==4}">
+            <i class="fa fa-tag" aria-hidden="true">
+              &nbsp;
+              <span>ETİKETLENENLER</span>
+            </i>
+          </div>
+        </router-link>
       </div>
 
       <router-view></router-view>
@@ -143,7 +161,7 @@ export default {
   name: "profil",
   data: function () {
     return {
-      selected: undefined,
+      selected: 1,
     };
   },
   methods: {
@@ -168,7 +186,7 @@ export default {
 
   padding-top: 90px;
   padding-bottom: 25px;
-  height: 100vh;
+  /* height: 100vh; */
   background: rgb(250, 250, 250);
 }
 .content {
@@ -197,8 +215,8 @@ export default {
   border-radius: 50%;
 }
 .headerLeft {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  margin-right: 100px;
 }
 
 .headerRight {
@@ -206,7 +224,7 @@ export default {
   margin-right: auto;
 }
 .UserNameRow {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
   align-items: center;
 }
 
@@ -248,6 +266,7 @@ export default {
 
 .storiesWrapper {
   height: 100px;
+  padding-left: 0;
 }
 
 button:focus {
@@ -284,7 +303,7 @@ button:focus {
 
 .internal {
   z-index: 10;
-  width: 12%;
+  width: 13%;
   height: 100%;
 
   display: inline-block;
@@ -357,9 +376,108 @@ button:focus {
   color: black;
 }
 /* line */
-@media only screen and (max-width: 562px) {
-  .headerRight {
-    margin-left: auto;
+
+/* after small numbers */
+.after-numbers-row {
+  border-top: 1px solid #dbdbdb;
+  margin-top: 11px !important;
+  display: none;
+}
+
+.after-numbers-row .numbers {
+  display: grid;
+  margin: auto;
+  text-align: center;
+  padding: 10px 0 10px 0;
+  color: gray;
+  font-size: 14px;
+}
+
+.numbers .data {
+  color: black;
+}
+
+/*small numbers after */
+@media only screen and (max-width: 735px) {
+  .numbersRow {
+    display: none;
+  }
+  .profilHeader {
+    margin-bottom: 12px !important;
+  }
+  .UserNameRow {
+    display: block;
+  }
+  .UserNameRow button {
+    width: 100%;
+  }
+
+  .profile-img img {
+    height: 85px;
+    width: 85px;
+  }
+  .headerLeft {
+    margin-right: unset;
+  }
+
+  .about {
+    margin-left: -87px !important;
+    margin-top: 33px !important;
+    font-size: 14px;
+  }
+  .story-profil-img img {
+    width: 60px !important;
+  }
+  .submenu span {
+    display: none;
+  }
+  .submenu-list {
+    justify-content: unset;
+  }
+  .submenu i {
+    font-size: 24px;
+    margin-left: 30px;
+  }
+
+  .submenu {
+    margin: auto;
+  }
+  .line {
+    padding-top: 0px;
+  }
+  .after-numbers-row {
+    display: flex;
+  }
+
+  .active {
+    border-top: unset;
+    color: rgb(0, 171, 238);
+  }
+}
+
+@media only screen and (max-width: 471px) {
+  .internal {
+    width: 24%;
+  }
+  .UserNameRow span {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 324px) {
+  .profile-img img {
+    height: 50px;
+    width: 50px;
+  }
+  .UserNameRow {
+    margin-bottom: 0px !important;
+  }
+  .UserNameRow span {
+    font-size: 18px;
+  }
+  .about {
+    margin-left: -56px !important;
+    margin-top: 19px !important;
+    font-size: 14px;
   }
 }
 </style>
