@@ -90,31 +90,35 @@
       </div>
 
       <div class="row submenu-list">
-        <div class="submenu">
-          <i class="fa fa-th" aria-hidden="true">
-            &nbsp;
-            <span>GÖNDERİLER</span>
-          </i>
-        </div>
-        <div class="submenu">
+        <router-link to="/profilePosts">
+          <div class="submenu" @click="selected = 1" :class="{active:selected==1}">
+            <i class="fa fa-th" aria-hidden="true">
+              &nbsp;
+              <span>GÖNDERİLER</span>
+            </i>
+          </div>
+        </router-link>
+        <div class="submenu" @click="selected = 2" :class="{active:selected==2}">
           <i class="fa fa-television" aria-hidden="true">
             &nbsp;
             <span>IGTV</span>
           </i>
         </div>
-        <div class="submenu">
+        <div class="submenu" @click="selected = 3" :class="{active:selected==3}">
           <i class="fa fa-bookmark-o" aria-hidden="true">
             &nbsp;
             <span>KAYDEDİLENLER</span>
           </i>
         </div>
-        <div class="submenu">
+        <div class="submenu" @click="selected = 4" :class="{active:selected==4}">
           <i class="fa fa-tag" aria-hidden="true">
             &nbsp;
             <span>ETİKETLENENLER</span>
           </i>
         </div>
       </div>
+
+      <router-view></router-view>
 
       <!-- <router-link to="/profilePosts">
         <span>gönderiler</span>
@@ -137,6 +141,11 @@
 <script>
 export default {
   name: "profil",
+  data: function () {
+    return {
+      selected: undefined,
+    };
+  },
   methods: {
     scrollLeft() {
       this.$refs.content.scrollLeft -= 300;
@@ -283,7 +292,7 @@ button:focus {
 
 .center {
   border: none;
-  background-color: #fff;
+  background-color: rgb(250, 250, 250);
   float: left;
   width: 100%;
   height: 100%;
@@ -341,6 +350,11 @@ button:focus {
   padding-top: 15px;
   color: gray;
   opacity: 0.8;
+}
+
+.active {
+  border-top: 1px solid black;
+  color: black;
 }
 /* line */
 @media only screen and (max-width: 562px) {
