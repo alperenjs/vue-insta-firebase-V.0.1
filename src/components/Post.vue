@@ -127,11 +127,12 @@ export default {
       this.$http.get("users.json").then((response) => {
         let data = response.data;
         for (let key in data) {
-          // console.log({
-          //   key: key,
-          //   userName: data[key].userName,
-          //   mail: data[key].mail,
-          // });
+          console.log({
+            key: key,
+            userName: data[key].userName,
+            mail: data[key].mail,
+            img: data[key].img,
+          });
           this.userList.push({
             key: key,
             userName: data[key].userName,
@@ -152,8 +153,8 @@ export default {
     },
 
     deleteUser(userKey) {
-      this.$http.delete("users/" + userKey + ".json").then((response) => {
-        console.log(response);
+      this.$http.get("users/" + userKey + ".json").then((response) => {
+        console.log(response.data);
       });
     },
   },

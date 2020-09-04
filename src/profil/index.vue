@@ -371,6 +371,10 @@ button:focus {
   opacity: 0.8;
 }
 
+.submenu-list a {
+  margin: auto;
+}
+
 .active {
   border-top: 1px solid black;
   color: black;
