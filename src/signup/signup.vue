@@ -38,24 +38,45 @@ export default {
   name: "Signup",
   data() {
     return {
+      key: "",
+      username: "",
       mail: "",
       password: "",
+      newUserId: "",
+      posts: [],
     };
   },
   methods: {
+    // auth kayıt + database'e kayıt açma
     register(e) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.mail, this.password)
         .then(
           (user) => {
-            alert("Account created");
-            this.$router.go("/");
+            this.newUserId = user.user.uid;
+            console.log(this.newUserId);
+
+            this.$http
+              .post("users/" + this.newUserId + ".json", {
+                key: "",
+                posts: "",
+                username: this.username,
+                mail: this.mail,
+                password: this.password,
+              })
+              .then((response) => {
+                console.log("hesap " + this.newUserId + " için oluşturuldu");
+              });
+
+            // alert("Account created");
+            // this.$router.go("/");
           },
           (err) => {
             alert(err.message);
           }
         );
+
       e.preventDefault();
     },
   },

@@ -9,27 +9,30 @@
         </div>
         <div class="headerRight">
           <div class="row UserNameRow">
-            <span>notionofthemotion</span>
+            <span>{{user.username}}</span>
             <div>
               <button>Profili Düzenle</button>
             </div>
           </div>
           <div class="row numbersRow">
             <span class="numbers">
-              <span class="data">110</span> gönderi
+              <span class="data">{{user.postNumber}}</span> gönderi
             </span>
             <span class="numbers">
-              <span class="data">593</span> takipçi
+              <span class="data">{{user.followerNumber}}</span> takipçi
             </span>
             <span class="numbers">
-              <span class="data">60</span> takip
+              <span class="data">{{user.followedNumber}}</span> takip
             </span>
           </div>
           <div class="row about">
             <span>
-              <h1>AlperenS</h1>World Champion of 50.Mffzg
-              <br /># Somut Olmayan Kültürel Miras Avcısı #
-              <br /># Intangible Cultural Heritage Hunter #
+              <h1>{{user.profilDisplayName}}</h1>
+              {{user.profilText1}}
+              <br />
+              {{user.profilText2}}
+              <br />
+              {{user.profilText3}}
             </span>
           </div>
         </div>
@@ -166,15 +169,76 @@ export default {
       selected: 1,
       isLoggedIn: false,
       currentUser: false,
+      user: {
+        key: "",
+        mail: "",
+        username: "",
+        postNumber: "",
+        followerNumber: "",
+        followedNumber: "",
+        profilDisplayName: "",
+        profilText1: "",
+        profilText2: "",
+        profilText3: "",
+        posts: [], // postlar arraya gönderilecek
+        followers: ["3", "3", "3", "3"], // followers arraya gönderilecek
+        following: ["3", "3", "3", "3"], // following arraya gönderilecek
+      },
     };
   },
   created() {
     if (firebase.auth().currentUser) {
       this.isLoggedIn = true;
       this.currentUser = firebase.auth().currentUser;
-      console.log(this.currentUser.uid);
+
+      console.log(" aktif kullanıcı idsi " + this.currentUser.uid);
     }
   },
+
+  mounted() {
+    this.$http
+      .get("users/" + this.currentUser.uid + ".json")
+      .then((response) => {
+        let data = response.body;
+
+        for (let key in data) {
+          this.key = key;
+          console.log(this.key);
+          // console.log(key); //posts.ları çekiyor
+          //current User'a göre veritabanından verileri yazıyor
+          this.user.mail = data[key].mail;
+          this.user.username = data[key].username;
+          this.user.followerNumber = data[key].followerNumber;
+          this.user.followedNumber = data[key].followedNumber;
+          this.user.profilDisplayName = data[key].profilDisplayName;
+          this.user.profilText1 = data[key].profilText1;
+          this.user.profilText2 = data[key].profilText2;
+          this.user.profilText3 = data[key].profilText3;
+          this.user.followerNumber = this.user.followers.length;
+          this.user.followedNumber = this.user.following.length;
+
+          console.log("SON SONSON SON  " + this.key);
+
+          /*
+          boş olan keylere, gerçek key değerini verme kodu
+          >> 
+          bu sayede > posts'a post ekleyebilicez 
+
+          currentUser.uid == auth dan gelen id veri tabanı açyoruz
+          key ise veri tabanı altındaki id
+          */
+          this.$http
+            .patch("users/" + this.currentUser.uid + "/" + this.key + ".json", {
+              key: this.key,
+            })
+            .then((response) => {
+              console.log("currentuser " + this.currentUser.uid);
+              console.log("erişim için" + this.key + "key başarıyla eklendi");
+            });
+        }
+      });
+  },
+
   methods: {
     scrollLeft() {
       this.$refs.content.scrollLeft -= 300;

@@ -69,6 +69,7 @@ export default {
       imageData: null,
       picture: null,
       uploadValue: 0,
+      id: null,
     };
   },
   /* eslint-disable */
@@ -100,6 +101,7 @@ export default {
           storageRef.snapshot.ref.getDownloadURL().then((url) => {
             this.picture = url;
             this.img = url;
+            console.log(this.picture);
             /*fotoğrafı link olarak this.picture içine
             yapıştırıp gösterebiliyor / benim de bunu database'e url olarak
             kaydetmem lazım ki her post fotoyou gösterebilsin */
@@ -110,7 +112,7 @@ export default {
 
     saveUser() {
       this.$http
-        .post("users.json", {
+        .post("users/signuptangelenkey.json", {
           userName: this.userName,
           mail: this.mail,
           post_text: this.post_text,
@@ -125,25 +127,32 @@ export default {
     },
 
     getUsers() {
-      this.$http.get("users.json").then((response) => {
-        let data = response.data;
-        for (let key in data) {
-          console.log({
-            key: key,
-            userName: data[key].userName,
-            mail: data[key].mail,
-            img: data[key].img,
-            password: data[key].password,
-          });
-          this.userList.push({
-            key: key,
-            userName: data[key].userName,
-            post_text: data[key].post_text,
-            mail: data[key].mail,
-            img: data[key].img,
-          });
-        }
-      });
+      this.$http
+        .get("users/HJUSB0uv40Vaz3fItDd2lQ7KTC43.json")
+        .then((response) => {
+          let data = response.body;
+
+          for (let key in data) {
+            console.log({
+              // key: key,
+              key: key,
+              id: data[key].id,
+              userName: data[key].userName,
+              mail: data[key].mail,
+              img: data[key].img,
+              password: data[key].password,
+            });
+            this.userList.push({
+              // key: key,
+              key: key,
+              id: data[key].id,
+              userName: data[key].userName,
+              post_text: data[key].post_text,
+              mail: data[key].mail,
+              img: data[key].img,
+            });
+          }
+        });
       // .then((data) => {
       //   for (let key in data.userList) {
       //     this.userList.push({
@@ -155,8 +164,9 @@ export default {
     },
 
     deleteUser(userKey) {
-      this.$http.get("users/" + userKey + ".json").then((response) => {
-        console.log(response.data);
+      this.$http.delete("users/" + userKey + ".json").then((response) => {
+        console.log(userKey + "silindi");
+        // console.log(response.data);
       });
     },
   },
