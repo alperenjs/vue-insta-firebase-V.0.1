@@ -1,7 +1,7 @@
 <template>
   <div class="loginGeneral">
     <div class="container">
-      <div class="row">
+      <div class="row Myrow">
         <div class="col-sm-6 phonecol">
           <img class="phone" src="../assets/loginpng.png" />
         </div>
@@ -11,14 +11,10 @@
 
             <form>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-posta" />
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Şifre"
-                />
+                <input v-model="mail" type="text" class="form-control" placeholder="E-posta" />
+                <input v-model="password" type="password" class="form-control" placeholder="Şifre" />
               </div>
-              <button class="btn btn-primary btn-block">Kaydol</button>
+              <button @click="register" class="MybtnSignup btn btn-primary btn-block">Kaydol</button>
               <p class="terms">
                 Kaydolarak, Koşullar'ı, Veri İlkesi'ni ve Çerezler İlkesi'ni
                 kabul etmiş olursun.
@@ -26,9 +22,8 @@
             </form>
           </div>
           <div class="right-column-2 text-center">
-            <p>Hesabın var mı?</p>
-            &nbsp;
-            <a href="login"> Giriş Yap </a>
+            <p>Hesabın var mı?</p>&nbsp;
+            <a href="login">Giriş Yap</a>
           </div>
         </div>
       </div>
@@ -37,17 +32,43 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "Signup",
   data() {
-    return {};
-  }
+    return {
+      mail: "",
+      password: "",
+    };
+  },
+  methods: {
+    register(e) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.mail, this.password)
+        .then(
+          (user) => {
+            alert("Account created");
+            this.$router.go("/");
+          },
+          (err) => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
+    },
+  },
 };
 </script>
 
-<style scoped>
-.row {
-  padding-top: 50px;
+<style >
+.mainHeader {
+  display: none;
+}
+
+.Myrow {
+  padding-top: 50px !important;
 }
 
 .phone {
@@ -142,13 +163,13 @@ export default {
   padding-left: 10px;
 }
 
-.btn {
+.MybtnSignup {
   margin: 12px auto;
   font-weight: 600 !important;
   padding: 4px !important;
 }
 
-.btn-primary {
+.MybtnSignup {
   background-color: #3897f0 !important;
   border: 1px solid #3897f0 !important;
 }

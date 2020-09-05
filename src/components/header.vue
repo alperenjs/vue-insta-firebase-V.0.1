@@ -101,7 +101,7 @@
             </router-link>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="#">Çıkış Yap</a>
+            <a v-on:click="logout" class="dropdown-item" href="#">Çıkış Yap</a>
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +125,25 @@
 
 
 <script>
+import firebase from "firebase";
 export default {
   name: "MainHeader",
+  data() {
+    return {
+      isLoggedIn: false,
+      currentUser: false,
+    };
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push("/login");
+        });
+    },
+  },
 };
 </script>
 

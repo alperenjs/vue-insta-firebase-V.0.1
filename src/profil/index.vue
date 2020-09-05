@@ -157,12 +157,23 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "profil",
   data: function () {
     return {
       selected: 1,
+      isLoggedIn: false,
+      currentUser: false,
     };
+  },
+  created() {
+    if (firebase.auth().currentUser) {
+      this.isLoggedIn = true;
+      this.currentUser = firebase.auth().currentUser;
+      console.log(this.currentUser.uid);
+    }
   },
   methods: {
     scrollLeft() {

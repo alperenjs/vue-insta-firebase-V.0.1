@@ -18,27 +18,92 @@ import taggedPosts from "./profil/taggedPosts.vue";
 import login from "./login/login.vue";
 import signup from "./signup/signup.vue";
 
-const router = new VueRouter({
+//const tu let yaptım bozlrsa düzelt
+let router = new VueRouter({
   mode: "history",
   routes: [
-    { path: "/", component: home },
-    { path: "/directMessages", component: directMessages },
-    { path: "/discover", component: discover },
-    { path: "/notifications", component: notifications },
-    { path: "/login", component: login },
-    { path: "/signup", component: signup },
+    { path: "/", component: home, meta: { requiresAuth: true } },
+    { path: "/login", component: login, meta: { requiresGuest: true } },
+    { path: "/signup", component: signup, meta: { requiresGuest: true } },
+    {
+      path: "/directMessages",
+      component: directMessages,
+      meta: { requiresAuth: true }
+    },
+    { path: "/discover", component: discover, meta: { requiresAuth: true } },
+    {
+      path: "/notifications",
+      component: notifications,
+      meta: { requiresAuth: true }
+    },
     {
       path: "/profil",
       component: profil,
+      meta: { requiresAuth: true },
       children: [
-        { path: "/profilePosts", component: profilePosts },
-        { path: "/igtv", component: igtv },
-        { path: "/savedPosts", component: savedPosts },
-        { path: "/taggedPosts", component: taggedPosts }
+        {
+          path: "/profilePosts",
+          component: profilePosts,
+          meta: { requiresAuth: true }
+        },
+        { path: "/igtv", component: igtv, meta: { requiresAuth: true } },
+        {
+          path: "/savedPosts",
+          component: savedPosts,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: "/taggedPosts",
+          component: taggedPosts,
+          meta: { requiresAuth: true }
+        }
       ]
     }
   ]
 });
+
+/* down section is for auth */
+
+router.beforeEach((to, from, next) => {
+  //check for requiredAuth guard
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    //check if not logged in
+    if (!firebase.auth().currentUser) {
+      //go to login
+      next({
+        path: "/login",
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      //proceed to route
+      next();
+    }
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
+    //check if logged in
+    //check if  logged in
+    if (firebase.auth().currentUser) {
+      //go to login
+      next({
+        path: "/",
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      //proceed to route
+      next();
+    }
+  } else {
+    //proceed to route
+    next();
+  }
+});
+
+export default router;
+
+/* up section is for auth */
 
 firebase.initializeApp({
   apiKey: "AIzaSyDWLjsCeUIJAtwu0X5oSVgjSHfP5hq5hDI",
@@ -51,6 +116,16 @@ firebase.initializeApp({
   measurementId: "G-Y9WPX7T38H"
 });
 
+let app;
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      el: "#app",
+      render: h => h(App),
+      router
+    });
+  }
+});
 Vue.use(VueResource);
 
 Vue.http.options.root = "https://vue-insta-9f903.firebaseio.com";
@@ -64,11 +139,5 @@ Vue.http.options.root = "https://vue-insta-9f903.firebaseio.com";
 //     }
 //   })
 // })
-
-new Vue({
-  el: "#app",
-  render: h => h(App),
-  router
-});
 
 /* firebase id https://vue-insta-9f903.firebaseio.com/ */

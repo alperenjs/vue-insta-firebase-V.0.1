@@ -60,6 +60,7 @@ export default {
   name: "Post",
   data() {
     return {
+      password: null,
       img: null,
       userName: null,
       mail: null,
@@ -132,6 +133,7 @@ export default {
             userName: data[key].userName,
             mail: data[key].mail,
             img: data[key].img,
+            password: data[key].password,
           });
           this.userList.push({
             key: key,

@@ -1,7 +1,7 @@
 <template>
   <div class="loginGeneral">
     <div class="container">
-      <div class="row">
+      <div class="row myRow">
         <div class="col-sm-6 phonecol">
           <img class="phone" src="../assets/loginpng.png" />
         </div>
@@ -11,20 +11,15 @@
 
             <form>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-posta" />
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Şifre"
-                />
+                <input v-model="mail" type="text" class="form-control" placeholder="E-posta" />
+                <input v-model="password" type="password" class="form-control" placeholder="Şifre" />
               </div>
-              <button class="btn btn-primary btn-block">Giriş Yap</button>
+              <button @click="login" class="myBtnLogin btn btn-primary btn-block">Giriş Yap</button>
             </form>
           </div>
           <div class="right-column-2 text-center">
-            <p>Hesabın yok mu?</p>
-            &nbsp;
-            <a href="signup"> Kaydol </a>
+            <p>Hesabın yok mu?</p>&nbsp;
+            <a href="signup">Kaydol</a>
           </div>
         </div>
       </div>
@@ -33,17 +28,42 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "Login",
   data() {
-    return {};
-  }
+    return {
+      mail: "",
+      password: "",
+    };
+  },
+  methods: {
+    login(e) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.mail, this.password)
+        .then(
+          (user) => {
+            alert("You are logged in as");
+            this.$router.go("/");
+          },
+          (err) => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
+    },
+  },
 };
 </script>
 
-<style scoped>
-.row {
-  padding-top: 50px;
+<style >
+.mainHeader {
+  display: none;
+}
+.myRow {
+  padding-top: 50px !important;
 }
 
 .phone {
@@ -138,13 +158,13 @@ export default {
   padding-left: 10px;
 }
 
-.btn {
+.myBtnLogin {
   margin: 12px auto;
   font-weight: 600 !important;
   padding: 4px !important;
 }
 
-.btn-primary {
+.myBtnLogin {
   background-color: #3897f0 !important;
   border: 1px solid #3897f0 !important;
 }
