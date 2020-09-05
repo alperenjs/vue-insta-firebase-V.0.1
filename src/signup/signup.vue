@@ -60,12 +60,39 @@ export default {
             this.$http
               .post("users/" + this.newUserId + ".json", {
                 key: "",
-                posts: "",
+                posts: [],
                 username: this.username,
                 mail: this.mail,
                 password: this.password,
               })
               .then((response) => {
+                /* 
+                yukarda kullanıcı oluşturuluoyr, aşağıda key veriliyor
+                bu key /posts kısmına post atıp çekmek için
+                */
+                this.$http
+                  .get("users/" + this.newUserId + ".json")
+                  .then((response) => {
+                    let data = response.body;
+
+                    for (let key in data) {
+                      this.key = key;
+
+                      this.$http
+                        .patch(
+                          "users/" + this.newUserId + "/" + this.key + ".json",
+                          {
+                            key: this.key,
+                          }
+                        )
+                        .then((response) => {
+                          console.log("currentuser " + this.newUserId);
+                          console.log(
+                            "erişim için" + this.key + "key başarıyla eklendi"
+                          );
+                        });
+                    }
+                  });
                 console.log("hesap " + this.newUserId + " için oluşturuldu");
               });
 

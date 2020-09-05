@@ -38,6 +38,7 @@
 
 <script>
 import firebase from "firebase";
+
 export default {
   name: "profilePosts",
   data: function () {
@@ -46,6 +47,7 @@ export default {
       isLoggedIn: false,
       currentUser: false,
       user: {
+        postsKey: "",
         url: "",
         mail: "",
         username: "",
@@ -72,45 +74,36 @@ export default {
   },
   mounted() {
     this.$http
-      .get("users/" + this.currentUser.uid + "/posts.json")
+      .get("users/" + this.currentUser.uid + ".json")
       .then((response) => {
         let data = response.body;
-        console.log(data);
         for (let key in data) {
-          console.log({
-            key: key,
-            text: data[key].text,
-            url: data[key].url,
-          }); //posts.ları çekiyor
+          this.postsKey = data[key].key;
 
-          this.posts.push({
-            key: key,
-            text: data[key].text,
-            url: data[key].url,
-          });
+          this.$http
+            .get(
+              "users/" +
+                this.currentUser.uid +
+                "/" +
+                this.postsKey +
+                "/posts.json"
+            )
+            .then((response) => {
+              let data = response.body;
+              for (let key in data) {
+                console.log({
+                  // key: key,
+                  url: data[key].url,
+                  text: data[key].text,
+                });
+                this.user.posts.push({
+                  // key: key,
+                  url: data[key].url,
+                  text: data[key].text,
+                });
+              }
+            });
         }
-        // for (let key in data) {
-        //   console.log(data[key].posts.post.url); //posts.ları çekiyor
-        //   //current User'a göre veritabanından verileri yazıyor
-        //   this.user.mail = data[key].mail;
-        //   this.user.username = data[key].username;
-        //   this.user.followerNumber = data[key].followerNumber;
-        //   this.user.followedNumber = data[key].followedNumber;
-        //   this.user.profilDisplayName = data[key].profilDisplayName;
-        //   this.user.profilText1 = data[key].profilText1;
-        //   this.user.profilText2 = data[key].profilText2;
-        //   this.user.profilText3 = data[key].profilText3;
-
-        //   this.user.followerNumber = this.user.followers.length;
-        //   this.user.followedNumber = this.user.following.length;
-
-        //   this.user.posts.push({
-        //     text: data[key].posts.data,
-        //     url: data[key].posts.data,
-        //   });
-
-        //   // this.user.postNumber = this.user.posts.length;
-        // }
       });
   },
 };

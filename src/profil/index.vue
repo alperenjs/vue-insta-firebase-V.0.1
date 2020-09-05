@@ -161,7 +161,7 @@
 
 <script>
 import firebase from "firebase";
-
+import profilePosts from "./profilePosts";
 export default {
   name: "profil",
   data: function () {
@@ -191,7 +191,7 @@ export default {
       this.isLoggedIn = true;
       this.currentUser = firebase.auth().currentUser;
 
-      console.log(" aktif kullanıcı idsi " + this.currentUser.uid);
+      // console.log(" aktif kullanıcı idsi " + this.currentUser.uid);
     }
   },
 
@@ -203,7 +203,7 @@ export default {
 
         for (let key in data) {
           this.key = key;
-          console.log(this.key);
+          // console.log(this.key);
           // console.log(key); //posts.ları çekiyor
           //current User'a göre veritabanından verileri yazıyor
           this.user.mail = data[key].mail;
@@ -216,25 +216,6 @@ export default {
           this.user.profilText3 = data[key].profilText3;
           this.user.followerNumber = this.user.followers.length;
           this.user.followedNumber = this.user.following.length;
-
-          console.log("SON SONSON SON  " + this.key);
-
-          /*
-          boş olan keylere, gerçek key değerini verme kodu
-          >> 
-          bu sayede > posts'a post ekleyebilicez 
-
-          currentUser.uid == auth dan gelen id veri tabanı açyoruz
-          key ise veri tabanı altındaki id
-          */
-          this.$http
-            .patch("users/" + this.currentUser.uid + "/" + this.key + ".json", {
-              key: this.key,
-            })
-            .then((response) => {
-              console.log("currentuser " + this.currentUser.uid);
-              console.log("erişim için" + this.key + "key başarıyla eklendi");
-            });
         }
       });
   },
