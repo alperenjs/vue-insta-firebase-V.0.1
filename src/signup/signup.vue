@@ -60,10 +60,14 @@ export default {
             this.$http
               .post("users/" + this.newUserId + ".json", {
                 key: "",
-                posts: [],
+                posts: this.posts,
+                postNumber: "",
                 username: this.username,
                 mail: this.mail,
                 password: this.password,
+                profilText1: "",
+                profilText2: "",
+                profilText3: "",
               })
               .then((response) => {
                 /* 

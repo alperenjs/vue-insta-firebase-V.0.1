@@ -162,6 +162,7 @@
 <script>
 import firebase from "firebase";
 import profilePosts from "./profilePosts";
+import profilePostsVue from "./profilePosts.vue";
 export default {
   name: "profil",
   data: function () {
@@ -216,8 +217,11 @@ export default {
           this.user.profilText3 = data[key].profilText3;
           this.user.followerNumber = this.user.followers.length;
           this.user.followedNumber = this.user.following.length;
+          this.user.postNumber = data[key].postNumber;
         }
       });
+
+    console.log("ebem ebem  " + profilePosts.data);
   },
 
   methods: {

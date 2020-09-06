@@ -91,17 +91,26 @@ export default {
             .then((response) => {
               let data = response.body;
               for (let key in data) {
-                console.log({
-                  // key: key,
-                  url: data[key].url,
-                  text: data[key].text,
-                });
+                // console.log({
+                //   // key: key,
+                //   url: data[key].url,
+                //   text: data[key].text,
+                // });
                 this.user.posts.push({
                   // key: key,
                   url: data[key].url,
                   text: data[key].text,
                 });
               }
+              this.$http.patch(
+                "users/" + this.currentUser.uid + "/" + this.postsKey + ".json",
+                {
+                  postNumber: this.user.posts.length,
+                }
+              );
+              console.log("posts.length " + this.user.posts.length);
+              this.user.postNumber = this.user.posts.length;
+              console.log("postNumber  " + this.user.postNumber);
             });
         }
       });
