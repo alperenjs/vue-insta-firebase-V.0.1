@@ -11,7 +11,21 @@
 
             <form>
               <div class="form-group">
+                <label style="float:left" for="file">Bir fotoğraf seç</label>
+                <input
+                  @change="previewImage"
+                  accept="image/*"
+                  class="file form-control"
+                  type="file"
+                />
                 <input v-model="mail" type="text" class="form-control" placeholder="E-posta" />
+                <input v-model="realname" type="text" class="form-control" placeholder="Adı" />
+                <input
+                  v-model="username"
+                  type="text"
+                  class="form-control"
+                  placeholder="Kullanıcı adı"
+                />
                 <input v-model="password" type="password" class="form-control" placeholder="Şifre" />
               </div>
               <button @click="register" class="MybtnSignup btn btn-primary btn-block">Kaydol</button>
@@ -44,10 +58,47 @@ export default {
       password: "",
       newUserId: "",
       posts: [],
+      realname: "",
+      profilPic: "",
     };
   },
   methods: {
     // auth kayıt + database'e kayıt açma
+    previewImage(event) {
+      this.profilPic = null;
+      this.imageData = event.target.files[0];
+      this.onUpload();
+    },
+
+    onUpload() {
+      this.profilPic = null;
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.profilPic = url;
+            // this.img = url;
+            console.log(this.picture);
+            /*fotoğrafı link olarak this.picture içine
+            yapıştırıp gösterebiliyor / benim de bunu database'e url olarak
+            kaydetmem lazım ki her post fotoyou gösterebilsin */
+          });
+        }
+      );
+    },
+
     register(e) {
       firebase
         .auth()
@@ -68,6 +119,8 @@ export default {
                 profilText1: "",
                 profilText2: "",
                 profilText3: "",
+                profilImg: this.profilPic,
+                realname: this.realname,
               })
               .then((response) => {
                 /* 
@@ -141,8 +194,8 @@ export default {
   width: 350px;
   margin: 10px;
   padding: 40px;
-  margin-top: 100px;
-  height: 350px;
+  margin-top: 50px;
+  height: 522px;
 }
 
 .right-column-2 {

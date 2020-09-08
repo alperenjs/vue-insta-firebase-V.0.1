@@ -4,7 +4,7 @@
       <div class="post-header row">
         <div class="post-Profile-img">
           <div>
-            <img :src="dprofilImg" />
+            <img :src="posterImg" />
           </div>
         </div>
         <div class="post-Profile-username">
@@ -110,7 +110,7 @@
 <script>
 export default {
   name: "homePosts",
-  props: ["username", "url", "postText", "dprofilImg"],
+  props: ["username", "url", "postText", "posterImg"],
 };
 </script>
 

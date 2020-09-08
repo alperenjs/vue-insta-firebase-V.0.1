@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isLoggedIn">
     <div class="footer">
       <p>
         <a type="button" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">
@@ -25,30 +25,61 @@
           </div>
           <div class="modal-body">
             <div>
-              <div>
-                <input class="input" type="file" @change="previewImage" accept="image/*" />
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div
+                      class="d-flex justify-content-center align-items-center rounded"
+                      style=" height: 140px; background-color: rgb(233, 236, 239);"
+                    >
+                      <img class="preview" style="height:140px; width:140px;" :src="picture" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"></h4>
+                    <p class="mb-0"></p>
+
+                    <div class="mt-2">
+                      <input class="input" type="file" @change="previewImage" accept="image/*" />
+                      <div>
+                        <p v-if="imageData!=null">
+                          {{uploadValue.toFixed()+"%"}}
+                          <progress
+                            id="progress"
+                            :value="uploadValue"
+                            max="100"
+                          ></progress>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
-                <p v-if="imageData!=null">
-                  {{uploadValue.toFixed()+"%"}}
-                  <progress
-                    id="progress"
-                    :value="uploadValue"
-                    max="100"
-                  ></progress>
-                </p>
+                <!-- <input class="input" type="file" @change="previewImage" accept="image/*" /> -->
               </div>
+
               <div v-if="imageData!=null">
-                <img class="preview" style="height:150px; width:150px;" :src="picture" />
+                <!-- <img class="preview" style="height:150px; width:150px;" :src="picture" /> -->
                 <!-- <button @click="onUpload">İleri</button> -->
-                <textarea
-                  v-model="post_text"
-                  class="postText"
-                  placeholder="Açıklama yaz..."
-                  rows="5"
-                  cols="60"
-                  name="description"
-                ></textarea>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <textarea
+                        v-model="post_text"
+                        class="postText"
+                        placeholder="Açıklama yaz..."
+                        rows="5"
+                        cols="60"
+                        name="description"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
                 <br />
               </div>
             </div>
@@ -78,6 +109,7 @@ export default {
       uploadValue: 0,
       id: null,
       user: {
+        profilImg: "",
         postsKey: "",
         url: "",
         mail: "",
@@ -112,6 +144,7 @@ export default {
         let data = response.body;
         for (let key in data) {
           this.postsKey = data[key].key;
+          this.profilImg = data[key].profilImg;
 
           this.$http
             .get(
@@ -201,6 +234,7 @@ export default {
         postSender: this.username,
         text: this.post_text,
         url: this.picture,
+        posterImg: this.profilImg,
       });
       this.$http
         .post(
@@ -209,6 +243,7 @@ export default {
             postSender: this.username,
             text: this.post_text,
             url: this.picture,
+            posterImg: this.profilImg,
           }
         )
         .then((response) => {

@@ -4,7 +4,7 @@
       <div class="row profilHeader">
         <div class="headerLeft">
           <div class="profile-img">
-            <img src="../assets/myprofimg.jpg" />
+            <img :src="user.profilPic" />
           </div>
         </div>
         <div class="headerRight">
@@ -322,6 +322,7 @@ export default {
         posts: [], // postlar arraya gönderilecek
         followers: ["3", "3", "3", "3"], // followers arraya gönderilecek
         following: ["3", "3", "3", "3"], // following arraya gönderilecek
+        profilPic: "",
       },
     };
   },
@@ -356,6 +357,7 @@ export default {
           this.user.followedNumber = this.user.following.length;
           this.user.postNumber = data[key].postNumber;
           this.user.realname = data[key].realname;
+          this.user.profilPic = data[key].profilImg;
         }
       });
 

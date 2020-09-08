@@ -3,7 +3,7 @@
     <div class="box">
       <div class="recomHeader">
         <div class="recom-Profile-img">
-          <img src="../assets/alperen2.jpg" />
+          <img :src="profilImg" />
         </div>
         <div class="recom-Profile-username">
           <h6>{{username}}</h6>
@@ -84,7 +84,7 @@
 <script>
 export default {
   name: "recommendation",
-  props: ["username", "realname"],
+  props: ["username", "realname", "profilImg"],
 };
 </script>
 

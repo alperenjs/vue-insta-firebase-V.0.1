@@ -13,10 +13,11 @@
             :url="post.durl"
             :postText="post.dpostText"
             :profilImg="post.dprofilImg"
+            :posterImg="post.dposterImg"
           ></homePosts>
         </div>
         <div class="col-4">
-          <recommendation :username="dusername" :realname="drealname" />
+          <recommendation :username="dusername" :realname="drealname" :profilImg="dprofilImg" />
         </div>
       </div>
     </div>
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import homePosts from "./homePosts";
 import recommendation from "./recommendation";
 import stories from "./stories";
@@ -37,12 +39,21 @@ export default {
       dpostText: "",
       dprofilImg: "",
       postsList: [],
+      dposterImg: "",
     };
   },
   components: {
     homePosts,
     recommendation,
     stories,
+  },
+  created() {
+    if (firebase.auth().currentUser) {
+      this.isLoggedIn = true;
+      this.currentUser = firebase.auth().currentUser;
+
+      // console.log(" aktif kullanıcı idsi " + this.currentUser.uid);
+    }
   },
 
   mounted() {
@@ -57,6 +68,7 @@ export default {
           durl: data[key].url,
           dpostText: data[key].text,
           dprofilImg: data[key].profilImg,
+          dposterImg: data[key].posterImg,
         });
         this.postsList.push({
           // key: key,
@@ -65,9 +77,24 @@ export default {
           durl: data[key].url,
           dpostText: data[key].text,
           dprofilImg: data[key].profilImg,
+          dposterImg: data[key].posterImg,
         });
       }
     });
+    this.$http
+      .get("users/" + this.currentUser.uid + ".json")
+      .then((response) => {
+        let data = response.body;
+        for (let key in data) {
+          this.key = key;
+          // console.log(this.key);
+          // console.log(key); //posts.ları çekiyor
+          //current User'a göre veritabanından verileri yazıyor
+          this.dusername = data[key].username;
+          this.drealname = data[key].realname;
+          this.dprofilImg = data[key].profilImg;
+        }
+      });
   },
 };
 </script>
