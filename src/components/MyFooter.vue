@@ -123,12 +123,28 @@ export default {
             )
             .then((response) => {
               let data = response.body;
-              for (let key in data) {
-                console.log({
-                  // key: key,
-                  url: data[key].url,
-                  text: data[key].text,
+
+              this.$http
+                .get(
+                  "users/" +
+                    this.currentUser.uid +
+                    "/" +
+                    this.postsKey +
+                    ".json"
+                )
+                .then((response) => {
+                  let data = response.body;
+                  //this.profilImg dicez profilden çekcez postlara göndercez
+                  this.username = data.username;
+                  console.log(this.username);
                 });
+
+              for (let key in data) {
+                // console.log({
+                //   // key: key,
+                //   url: data[key].url,
+                //   text: data[key].text,
+                // });
               }
             });
         }
@@ -181,15 +197,20 @@ export default {
     // },
 
     sendPost() {
+      this.$http.post("allPosts.json", {
+        postSender: this.username,
+        text: this.post_text,
+        url: this.picture,
+      });
       this.$http
         .post(
           "users/" + this.currentUser.uid + "/" + this.postsKey + "/posts.json",
           {
+            postSender: this.username,
             text: this.post_text,
             url: this.picture,
           }
         )
-
         .then((response) => {
           this.$router.go("profilePosts");
         });

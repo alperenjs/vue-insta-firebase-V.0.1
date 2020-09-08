@@ -11,7 +11,11 @@
           <div class="row UserNameRow">
             <span>{{user.username}}</span>
             <div>
-              <button>Profili Düzenle</button>
+              <button
+                data-toggle="modal"
+                data-target="#exampleModal1"
+                data-backdrop="false"
+              >Profili Düzenle</button>
             </div>
           </div>
           <div class="row numbersRow">
@@ -27,7 +31,7 @@
           </div>
           <div class="row about">
             <span>
-              <h1>{{user.profilDisplayName}}</h1>
+              <h1>{{user.realname}}</h1>
               {{user.profilText1}}
               <br />
               {{user.profilText2}}
@@ -140,21 +144,154 @@
       </div>
 
       <router-view></router-view>
+    </div>
 
-      <!-- <router-link to="/profilePosts">
-        <span>gönderiler</span>
-      </router-link>
-      <router-link to="/igtv">
-        <span>igtv</span>
-      </router-link>
-      <router-link to="/savedPosts">
-        <span>kaydedilenler</span>
-      </router-link>
-      <router-link to="/taggedPosts">
-        <span>etiketlenenler</span>
-      </router-link>-->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6>Profili Düzenle</h6>
+          </div>
+          <div class="modal-body">
+            <link
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+              rel="stylesheet"
+            />
+            <div class="container">
+              <div class="row flex-lg-nowrap">
+                <div class="col">
+                  <div class="row">
+                    <div class="col mb-3">
+                      <div>
+                        <div>
+                          <div class="e-profile">
+                            <div class="row">
+                              <div class="col-12 col-sm-auto mb-3">
+                                <div class="mx-auto" style="width: 140px;">
+                                  <div
+                                    class="d-flex justify-content-center align-items-center rounded"
+                                    style=" border-radius:50%!important; height: 140px; background-color: rgb(233, 236, 239);"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div
+                                class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
+                              >
+                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                  <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"></h4>
+                                  <p class="mb-0"></p>
 
-      <!-- <router-view></router-view> -->
+                                  <div class="mt-2">
+                                    <button class="btn btn-primary" type="button">
+                                      <i class="fa fa-fw fa-camera"></i>
+                                      <span>Change Photo</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tab-content pt-3">
+                              <div class="tab-pane active">
+                                <form class="form" novalidate>
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label>Adın</label>
+                                            <input
+                                              v-model="user.realname"
+                                              class="form-control"
+                                              type="text"
+                                              name="name"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label>Kullanıcı Adı</label>
+                                            <input
+                                              v-model="user.username"
+                                              class="form-control"
+                                              type="text"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label>Biyografi 1</label>
+                                            <input
+                                              v-model="user.profilText1"
+                                              class="form-control"
+                                              type="text"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label>Biyografi 2</label>
+                                            <input
+                                              v-model="user.profilText2"
+                                              class="form-control"
+                                              type="text"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label>Biyografi 3</label>
+                                            <input
+                                              v-model="user.profilText3"
+                                              class="form-control"
+                                              type="text"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col d-flex justify-content-end">
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >İptal</button>
+                                      <button @click="updateUser" class="btn btn-primary">Güncelle</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -174,6 +311,7 @@ export default {
         key: "",
         mail: "",
         username: "",
+        realname: "",
         postNumber: "",
         followerNumber: "",
         followedNumber: "",
@@ -201,7 +339,6 @@ export default {
       .get("users/" + this.currentUser.uid + ".json")
       .then((response) => {
         let data = response.body;
-
         for (let key in data) {
           this.key = key;
           // console.log(this.key);
@@ -218,6 +355,7 @@ export default {
           this.user.followerNumber = this.user.followers.length;
           this.user.followedNumber = this.user.following.length;
           this.user.postNumber = data[key].postNumber;
+          this.user.realname = data[key].realname;
         }
       });
 
@@ -231,11 +369,51 @@ export default {
     scrollRight() {
       this.$refs.content.scrollLeft += 300;
     },
+    updateUser() {
+      event.preventDefault();
+      this.$http.patch(
+        "users/" + this.currentUser.uid + "/" + this.key + ".json",
+        {
+          profilText1: this.user.profilText1,
+          profilText2: this.user.profilText2,
+          profilText3: this.user.profilText3,
+          realname: this.user.realname,
+          username: this.user.username,
+        }
+      );
+    },
   },
 };
 </script>
 
 <style  scoped>
+/* modal  buranın altında*/
+.editRow h6 {
+  margin: 0 !important;
+}
+.modal-header {
+  justify-content: center;
+  text-align: center;
+}
+.editRow {
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  padding-bottom: 15px;
+  display: block;
+}
+.editRow h6 {
+  margin: 0 !important;
+}
+
+.editRow input {
+  margin-left: 15px;
+  border: 1px solid #dadada;
+  width: 80%;
+}
+
+/* modal buranın üstünde*/
+
 .row {
   margin: 0 !important;
   padding-top: 0 !important;

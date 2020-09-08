@@ -4,11 +4,11 @@
       <div class="post-header row">
         <div class="post-Profile-img">
           <div>
-            <img src="../assets/alperen2.jpg" />
+            <img :src="dprofilImg" />
           </div>
         </div>
         <div class="post-Profile-username">
-          <h6>alperenszz</h6>
+          <h6>{{username}}</h6>
         </div>
         <div class="post-settings">
           <i class="fa fa-ellipsis-h"></i>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="posted-image">
-        <img src="../assets/post1.jpg" />
+        <img :src="url" />
       </div>
 
       <div class="post-footer">
@@ -89,8 +89,8 @@
         </div>
         <div class="post-text">
           <div class="post-text-by-user">
-            <strong>alperenszz &nbsp;</strong>
-            <span>Selam bu benim ilk paylaşımım</span>
+            <strong>{{username}} &nbsp;</strong>
+            <span>{{postText}}</span>
           </div>
           <div class="post-comments"></div>
         </div>
@@ -110,12 +110,14 @@
 <script>
 export default {
   name: "homePosts",
+  props: ["username", "url", "postText", "dprofilImg"],
 };
 </script>
 
 <style>
 .post-wrapper {
   padding-top: 30px;
+  padding-bottom: 50px;
   width: 726px;
   /* margin-left: 15rem; */
   float: right;
@@ -205,6 +207,7 @@ export default {
 
 .post-add-comment form {
   display: inline-flex;
+  width: 100%;
 }
 
 .post-add-comment button {
@@ -216,6 +219,7 @@ export default {
 .post-add-comment input {
   /* width: 550px; */
   border: none;
+  width: 80%;
 }
 
 .posted-image {

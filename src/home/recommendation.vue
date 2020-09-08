@@ -6,8 +6,8 @@
           <img src="../assets/alperen2.jpg" />
         </div>
         <div class="recom-Profile-username">
-          <h6>notionofthemotion</h6>
-          <span>alperenS</span>
+          <h6>{{username}}</h6>
+          <span>{{realname}}</span>
         </div>
       </div>
       <div class="recom-list">
@@ -84,6 +84,7 @@
 <script>
 export default {
   name: "recommendation",
+  props: ["username", "realname"],
 };
 </script>
 
