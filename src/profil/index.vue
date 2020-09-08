@@ -221,7 +221,7 @@ export default {
         }
       });
 
-    console.log("ebem ebem  " + profilePosts.data);
+    // console.log("ebem ebem  " + profilePosts.data);
   },
 
   methods: {

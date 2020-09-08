@@ -69,7 +69,7 @@ export default {
       this.isLoggedIn = true;
       this.currentUser = firebase.auth().currentUser;
 
-      console.log(" profildeki aktif kullanıcı idsi " + this.currentUser.uid);
+      // console.log(" profildeki aktif kullanıcı idsi " + this.currentUser.uid);
     }
   },
   mounted() {

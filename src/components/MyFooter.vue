@@ -195,49 +195,50 @@ export default {
         });
     },
 
-    getUsers() {
-      this.$http
-        .get("users/HJUSB0uv40Vaz3fItDd2lQ7KTC43.json")
-        .then((response) => {
-          let data = response.body;
+    // getUsers() {
+    //   this.$http
+    //     .get("users/HJUSB0uv40Vaz3fItDd2lQ7KTC43.json")
+    //     .then((response) => {
+    //       let data = response.body;
 
-          for (let key in data) {
-            console.log({
-              // key: key,
-              key: key,
-              id: data[key].id,
-              userName: data[key].userName,
-              mail: data[key].mail,
-              img: data[key].img,
-              password: data[key].password,
-            });
-            this.userList.push({
-              // key: key,
-              key: key,
-              id: data[key].id,
-              userName: data[key].userName,
-              post_text: data[key].post_text,
-              mail: data[key].mail,
-              img: data[key].img,
-            });
-          }
-        });
-      // .then((data) => {
-      //   for (let key in data.userList) {
-      //     this.userList.push({
-      //       key: key,
-      //       data: data.userList[key],
-      //     });
-      //   }
-      // });
-    },
+    //       for (let key in data) {
+    //         console.log({
+    //           // key: key,
+    //           key: key,
+    //           id: data[key].id,
+    //           userName: data[key].userName,
+    //           mail: data[key].mail,
+    //           img: data[key].img,
+    //           password: data[key].password,
+    //         });
+    //         this.userList.push({
+    //           // key: key,
+    //           key: key,
+    //           id: data[key].id,
+    //           userName: data[key].userName,
+    //           post_text: data[key].post_text,
+    //           mail: data[key].mail,
+    //           img: data[key].img,
+    //         });
+    //       }
+    //     });
 
-    deleteUser(userKey) {
-      this.$http.delete("users/" + userKey + ".json").then((response) => {
-        console.log(userKey + "silindi");
-        // console.log(response.data);
-      });
-    },
+    //   .then((data) => {
+    //     for (let key in data.userList) {
+    //       this.userList.push({
+    //         key: key,
+    //         data: data.userList[key],
+    //       });
+    //     }
+    //   });
+    // },
+
+    // deleteUser(userKey) {
+    //   this.$http.delete("users/" + userKey + ".json").then((response) => {
+    //     console.log(userKey + "silindi");
+    //     // console.log(response.data);
+    //   });
+    // },
   },
 };
 </script>
