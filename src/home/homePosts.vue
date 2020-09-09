@@ -92,10 +92,17 @@
             <strong>{{username}} &nbsp;</strong>
             <span>{{postText}}</span>
           </div>
-          <div class="post-comments"></div>
+          <div class="posted-time">
+            <span class="postedDate">yorumları gör</span>
+          </div>
+          <div class="post-comments">
+            <strong>{{commentUser}} &nbsp;</strong>
+            <span>{{commentText}}</span>
+          </div>
         </div>
-        <div class="posted-time"></div>
-        <span class="postedDate">2 GÜN ÖNCE</span>
+        <div class="posted-time">
+          <span class="postedDate">2 GÜN ÖNCE</span>
+        </div>
       </div>
       <div class="post-footer post-add-comment">
         <form>
@@ -110,7 +117,14 @@
 <script>
 export default {
   name: "homePosts",
-  props: ["username", "url", "postText", "posterImg"],
+  props: [
+    "username",
+    "url",
+    "postText",
+    "posterImg",
+    "commentUser",
+    "commentText",
+  ],
 };
 </script>
 
@@ -120,7 +134,6 @@ export default {
   padding-bottom: 50px;
   width: 726px;
   /* margin-left: 15rem; */
-  float: right;
 }
 
 .post-card {
@@ -146,7 +159,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-right: 15px;
-  padding-left: 50px;
+  padding-left: 30px;
 }
 .avatar-color {
   padding: 3px;

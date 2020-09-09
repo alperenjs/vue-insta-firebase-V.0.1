@@ -19,6 +19,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h6>Bir gönderi paylaş</h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -108,6 +109,7 @@ export default {
       picture: null,
       uploadValue: 0,
       id: null,
+      postedTime: "",
       user: {
         profilImg: "",
         postsKey: "",

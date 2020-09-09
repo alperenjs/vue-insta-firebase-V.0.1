@@ -1,20 +1,22 @@
 <template>
   <div id="home" class="generalBackground">
     <div class="container">
-      <div class="row">
+      <div class="mediaRow row">
         <div class="col-8">
           <div class="denemeRow">
             <stories />
           </div>
-          <homePosts
-            v-for="post in postsList"
-            :key="post.key"
-            :username="post.dusername"
-            :url="post.durl"
-            :postText="post.dpostText"
-            :profilImg="post.dprofilImg"
-            :posterImg="post.dposterImg"
-          ></homePosts>
+          <div class="postscontainer">
+            <homePosts
+              v-for="post in postsList"
+              :key="post.key"
+              :username="post.dusername"
+              :url="post.durl"
+              :postText="post.dpostText"
+              :profilImg="post.dprofilImg"
+              :posterImg="post.dposterImg"
+            ></homePosts>
+          </div>
         </div>
         <div class="col-4">
           <recommendation :username="dusername" :realname="drealname" :profilImg="dprofilImg" />
@@ -40,6 +42,9 @@ export default {
       dprofilImg: "",
       postsList: [],
       dposterImg: "",
+      dcommentUser: "",
+      dcommentText: "",
+      dpostComments: [],
     };
   },
   components: {
@@ -79,8 +84,14 @@ export default {
           dprofilImg: data[key].profilImg,
           dposterImg: data[key].posterImg,
         });
+
+        // this.dpostComments.push({
+        //   dcommentUser: data[key].postComments.commentUser,
+        //   dcommentText: data[key].postComments.commentText,
+        // });
       }
     });
+
     this.$http
       .get("users/" + this.currentUser.uid + ".json")
       .then((response) => {
@@ -103,5 +114,28 @@ export default {
 .generalBackground {
   background: rgb(250, 250, 250) !important;
   padding-top: 80px;
+}
+
+.postscontainer {
+  display: inline-flex;
+  flex-direction: column-reverse !important;
+}
+@media only screen and (max-width: 1000px) {
+  .mediaRow {
+    display: unset !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .container {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .post-wrapper {
+    padding-bottom: 10px !important;
+  }
 }
 </style>

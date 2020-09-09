@@ -17,80 +17,12 @@
       <div class="internal">
         <div class="story-profil-img post-Profile-img">
           <div class="row avatar-color">
-            <img src="../assets/alperen2.jpg" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/vue-insta-9f903.appspot.com/o/alperen2.jpg?alt=media&token=df0e669d-4dce-48b1-ba9c-e8d201d94c48"
+            />
           </div>
           <div class="row">
-            <span class="story-username">notionof</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/p2.png" />
-          </div>
-          <div class="row">
-            <span class="story-username">helolo32</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/p2.png" />
-          </div>
-          <div class="row">
-            <span class="story-username">myinsta</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/p2.png" />
-          </div>
-          <div class="row">
-            <span class="story-username">user09</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/alperen2.jpg" />
-          </div>
-          <div class="row">
-            <span class="story-username">notionof</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/alperen2.jpg" />
-          </div>
-          <div class="row">
-            <span class="story-username">notionof</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/alperen2.jpg" />
-          </div>
-          <div class="row">
-            <span class="story-username">notionof</span>
-          </div>
-        </div>
-      </div>
-      <div class="internal">
-        <div class="story-profil-img post-Profile-img">
-          <div class="row avatar-color">
-            <img src="../assets/alperen2.jpg" />
-          </div>
-          <div class="row">
-            <span class="story-username">notionof</span>
+            <span class="story-username">Alperen</span>
           </div>
         </div>
       </div>
@@ -101,6 +33,7 @@
 <script>
 export default {
   name: "stories",
+
   methods: {
     scrollLeft() {
       this.$refs.content.scrollLeft -= 300;

@@ -121,6 +121,7 @@ export default {
 }
 .recom-Profile-img img {
   width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 .recom-Profile-username h6 {

@@ -178,7 +178,14 @@
                                   <div
                                     class="d-flex justify-content-center align-items-center rounded"
                                     style=" border-radius:50%!important; height: 140px; background-color: rgb(233, 236, 239);"
-                                  ></div>
+                                  >
+                                    <img
+                                      style="    height: 140px;
+    width: 140px;
+    border-radius: 50%;"
+                                      :src="user.profilPic"
+                                    />
+                                  </div>
                                 </div>
                               </div>
                               <div
@@ -189,10 +196,13 @@
                                   <p class="mb-0"></p>
 
                                   <div class="mt-2">
-                                    <button class="btn btn-primary" type="button">
-                                      <i class="fa fa-fw fa-camera"></i>
-                                      <span>Change Photo</span>
-                                    </button>
+                                    <label>Fotoğraf değiştir</label>
+                                    <input
+                                      class="input"
+                                      type="file"
+                                      @change="previewImage"
+                                      accept="image/*"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -307,6 +317,7 @@ export default {
       selected: 1,
       isLoggedIn: false,
       currentUser: false,
+      imageData: "",
       user: {
         key: "",
         mail: "",
@@ -365,6 +376,40 @@ export default {
   },
 
   methods: {
+    previewImage(event) {
+      this.uploadValue = 0;
+      this.user.profilPic = null;
+      this.imageData = event.target.files[0];
+      this.onUpload();
+    },
+
+    onUpload() {
+      this.user.profilPic = null;
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.user.profilPic = url;
+            /*fotoğrafı link olarak this.picture içine
+            yapıştırıp gösterebiliyor / benim de bunu database'e url olarak
+            kaydetmem lazım ki her post fotoyou gösterebilsin */
+          });
+        }
+      );
+    },
+
     scrollLeft() {
       this.$refs.content.scrollLeft -= 300;
     },
@@ -381,6 +426,7 @@ export default {
           profilText3: this.user.profilText3,
           realname: this.user.realname,
           username: this.user.username,
+          profilImg: this.user.profilPic,
         }
       );
     },
