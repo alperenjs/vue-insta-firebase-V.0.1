@@ -10,6 +10,7 @@
             <homePosts
               v-for="post in postsList"
               :key="post.key"
+              :postId="post.key"
               :username="post.dusername"
               :url="post.durl"
               :postText="post.dpostText"
@@ -45,6 +46,7 @@ export default {
       dcommentUser: "",
       dcommentText: "",
       dpostComments: [],
+      did: "",
     };
   },
   components: {
@@ -129,7 +131,7 @@ export default {
   }
 
   .container {
-    margin: 0 !important;
+    /* margin: 0 !important; */
     padding-left: 0 !important;
     padding-right: 0 !important;
   }

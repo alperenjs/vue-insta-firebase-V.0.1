@@ -11,7 +11,15 @@
           <div class="row UserNameRow">
             <span>{{user.username}}</span>
             <div></div>
+            <div>
+              <button
+                data-toggle="modal"
+                data-target="#exampleModal1"
+                data-backdrop="false"
+              >Profili Düzenle</button>
+            </div>
           </div>
+
           <div class="row numbersRow">
             <span class="numbers">
               <span class="data">{{user.postNumber}}</span> gönderi
@@ -484,7 +492,7 @@ button:focus {
 
   .about {
     margin-left: -87px !important;
-    margin-top: 33px !important;
+    margin-top: 61px !important;
     font-size: 14px;
   }
   .story-profil-img img {
@@ -538,7 +546,7 @@ button:focus {
   }
   .about {
     margin-left: -56px !important;
-    margin-top: 19px !important;
+    margin-top: 30px !important;
     font-size: 14px;
   }
 }

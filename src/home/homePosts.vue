@@ -1,5 +1,5 @@
 <template>
-  <div class="post-wrapper">
+  <div :id="postId" class="post-wrapper">
     <div class="post-card">
       <div class="post-header row">
         <div class="post-Profile-img">
@@ -124,6 +124,7 @@ export default {
     "posterImg",
     "commentUser",
     "commentText",
+    "postId",
   ],
 };
 </script>
