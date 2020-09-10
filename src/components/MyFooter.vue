@@ -101,6 +101,7 @@ export default {
   name: "myFooter",
   data: function () {
     return {
+      isLoggedIn: false,
       img: null,
       userName: null,
       mail: null,
@@ -140,50 +141,52 @@ export default {
     }
   },
   mounted() {
-    this.$http
-      .get("users/" + this.currentUser.uid + ".json")
-      .then((response) => {
-        let data = response.body;
-        for (let key in data) {
-          this.postsKey = data[key].key;
-          this.profilImg = data[key].profilImg;
+    if (this.isLoggedIn) {
+      this.$http
+        .get("users/" + this.currentUser.uid + ".json")
+        .then((response) => {
+          let data = response.body;
+          for (let key in data) {
+            this.postsKey = data[key].key;
+            this.profilImg = data[key].profilImg;
 
-          this.$http
-            .get(
-              "users/" +
-                this.currentUser.uid +
-                "/" +
-                this.postsKey +
-                "/posts.json"
-            )
-            .then((response) => {
-              let data = response.body;
+            this.$http
+              .get(
+                "users/" +
+                  this.currentUser.uid +
+                  "/" +
+                  this.postsKey +
+                  "/posts.json"
+              )
+              .then((response) => {
+                let data = response.body;
 
-              this.$http
-                .get(
-                  "users/" +
-                    this.currentUser.uid +
-                    "/" +
-                    this.postsKey +
-                    ".json"
-                )
-                .then((response) => {
-                  let data = response.body;
-                  //this.profilImg dicez profilden çekcez postlara göndercez
-                  this.username = data.username;
-                  console.log(this.username);
-                });
+                this.$http
+                  .get(
+                    "users/" +
+                      this.currentUser.uid +
+                      "/" +
+                      this.postsKey +
+                      ".json"
+                  )
+                  .then((response) => {
+                    let data = response.body;
+                    //this.profilImg dicez profilden çekcez postlara göndercez
+                    this.username = data.username;
+                    console.log(this.username);
+                  });
 
-              for (let key in data) {
-                // console.log({
-                //   // key: key,
-                //   url: data[key].url,
-                //   text: data[key].text,
-                // });
-              }
-            });
-        }
-      });
+                for (let key in data) {
+                  // console.log({
+                  //   // key: key,
+                  //   url: data[key].url,
+                  //   text: data[key].text,
+                  // });
+                }
+              });
+          }
+        });
+    }
   },
 
   methods: {

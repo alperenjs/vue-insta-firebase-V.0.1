@@ -10,13 +10,7 @@
         <div class="headerRight">
           <div class="row UserNameRow">
             <span>{{user.username}}</span>
-            <div>
-              <button
-                data-toggle="modal"
-                data-target="#exampleModal1"
-                data-backdrop="false"
-              >Profili Düzenle</button>
-            </div>
+            <div></div>
           </div>
           <div class="row numbersRow">
             <span class="numbers">
@@ -109,7 +103,7 @@
       </div>
 
       <div class="row submenu-list">
-        <router-link to="/profilePosts">
+        <router-link to="/notionofthemotion/profilePosts">
           <div class="submenu" @click="selected = 1" :class="{active:selected==1}">
             <i class="fa fa-th" aria-hidden="true">
               &nbsp;
@@ -117,7 +111,7 @@
             </i>
           </div>
         </router-link>
-        <router-link to="/igtv">
+        <router-link to="/notionofthemotion/igtv">
           <div class="submenu" @click="selected = 2" :class="{active:selected==2}">
             <i class="fa fa-television" aria-hidden="true">
               &nbsp;
@@ -125,15 +119,8 @@
             </i>
           </div>
         </router-link>
-        <router-link to="/savedPosts">
-          <div class="submenu" @click="selected = 3" :class="{active:selected==3}">
-            <i class="fa fa-bookmark-o" aria-hidden="true">
-              &nbsp;
-              <span>KAYDEDİLENLER</span>
-            </i>
-          </div>
-        </router-link>
-        <router-link to="/taggedPosts">
+
+        <router-link to="/notionofthemotion/taggedPosts">
           <div class="submenu" @click="selected = 4" :class="{active:selected==4}">
             <i class="fa fa-tag" aria-hidden="true">
               &nbsp;
@@ -142,182 +129,24 @@
           </div>
         </router-link>
       </div>
-
       <router-view></router-view>
-    </div>
-
-    <div
-      class="modal fade"
-      id="exampleModal1"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h6>Profili Düzenle</h6>
-          </div>
-          <div class="modal-body">
-            <link
-              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-              rel="stylesheet"
-            />
-            <div class="container">
-              <div class="row flex-lg-nowrap">
-                <div class="col">
-                  <div class="row">
-                    <div class="col mb-3">
-                      <div>
-                        <div>
-                          <div class="e-profile">
-                            <div class="row">
-                              <div class="col-12 col-sm-auto mb-3">
-                                <div class="mx-auto" style="width: 140px;">
-                                  <div
-                                    class="d-flex justify-content-center align-items-center rounded"
-                                    style=" border-radius:50%!important; height: 140px; background-color: rgb(233, 236, 239);"
-                                  >
-                                    <img
-                                      style="    height: 140px;
-    width: 140px;
-    border-radius: 50%;"
-                                      :src="user.profilPic"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div
-                                class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
-                              >
-                                <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                  <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"></h4>
-                                  <p class="mb-0"></p>
-
-                                  <div class="mt-2">
-                                    <label>Fotoğraf değiştir</label>
-                                    <input
-                                      class="input"
-                                      type="file"
-                                      @change="previewImage"
-                                      accept="image/*"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="tab-content pt-3">
-                              <div class="tab-pane active">
-                                <form class="form" novalidate>
-                                  <div class="row">
-                                    <div class="col">
-                                      <div class="row">
-                                        <div class="col">
-                                          <div class="form-group">
-                                            <label>Adın</label>
-                                            <input
-                                              v-model="user.realname"
-                                              class="form-control"
-                                              type="text"
-                                              name="name"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col">
-                                          <div class="form-group">
-                                            <label>Kullanıcı Adı</label>
-                                            <input
-                                              v-model="user.username"
-                                              class="form-control"
-                                              type="text"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col">
-                                          <div class="form-group">
-                                            <label>Biyografi 1</label>
-                                            <input
-                                              v-model="user.profilText1"
-                                              class="form-control"
-                                              type="text"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col">
-                                          <div class="form-group">
-                                            <label>Biyografi 2</label>
-                                            <input
-                                              v-model="user.profilText2"
-                                              class="form-control"
-                                              type="text"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col">
-                                          <div class="form-group">
-                                            <label>Biyografi 3</label>
-                                            <input
-                                              v-model="user.profilText3"
-                                              class="form-control"
-                                              type="text"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                    <div class="col d-flex justify-content-end">
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        data-dismiss="modal"
-                                      >İptal</button>
-                                      <button @click="updateUser" class="btn btn-primary">Güncelle</button>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer"></div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
-import profilePosts from "./profilePosts";
-import profilePostsVue from "./profilePosts.vue";
+import aprofilePosts from "./aprofilePosts";
+import aprofilePostsVue from "./aprofilePosts.vue";
 export default {
-  name: "profil",
+  name: "aprofil",
   data: function () {
     return {
       selected: 1,
       isLoggedIn: false,
       currentUser: false,
       imageData: "",
+
       user: {
         key: "",
         mail: "",
@@ -337,18 +166,10 @@ export default {
       },
     };
   },
-  created() {
-    if (firebase.auth().currentUser) {
-      this.isLoggedIn = true;
-      this.currentUser = firebase.auth().currentUser;
-
-      // console.log(" aktif kullanıcı idsi " + this.currentUser.uid);
-    }
-  },
 
   mounted() {
     this.$http
-      .get("users/" + this.currentUser.uid + ".json")
+      .get("users/" + "XUrMEd6uzEcLRiKErMU1EBGSFdJ3" + ".json")
       .then((response) => {
         let data = response.body;
         for (let key in data) {
@@ -371,64 +192,14 @@ export default {
           this.user.profilPic = data[key].profilImg;
         }
       });
-
-    // console.log("ebem ebem  " + profilePosts.data);
   },
 
   methods: {
-    previewImage(event) {
-      this.uploadValue = 0;
-      this.user.profilPic = null;
-      this.imageData = event.target.files[0];
-      this.onUpload();
-    },
-
-    onUpload() {
-      this.user.profilPic = null;
-      const storageRef = firebase
-        .storage()
-        .ref(`${this.imageData.name}`)
-        .put(this.imageData);
-      storageRef.on(
-        `state_changed`,
-        (snapshot) => {
-          this.uploadValue =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        (error) => {
-          console.log(error.message);
-        },
-        () => {
-          this.uploadValue = 100;
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.user.profilPic = url;
-            /*fotoğrafı link olarak this.picture içine
-            yapıştırıp gösterebiliyor / benim de bunu database'e url olarak
-            kaydetmem lazım ki her post fotoyou gösterebilsin */
-          });
-        }
-      );
-    },
-
     scrollLeft() {
       this.$refs.content.scrollLeft -= 300;
     },
     scrollRight() {
       this.$refs.content.scrollLeft += 300;
-    },
-    updateUser() {
-      event.preventDefault();
-      this.$http.patch(
-        "users/" + this.currentUser.uid + "/" + this.key + ".json",
-        {
-          profilText1: this.user.profilText1,
-          profilText2: this.user.profilText2,
-          profilText3: this.user.profilText3,
-          realname: this.user.realname,
-          username: this.user.username,
-          profilImg: this.user.profilPic,
-        }
-      );
     },
   },
 };

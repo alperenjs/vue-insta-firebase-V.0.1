@@ -18,6 +18,12 @@ import taggedPosts from "./profil/taggedPosts.vue";
 import login from "./login/login.vue";
 import signup from "./signup/signup.vue";
 
+import aprofil from "./adminProfil/aindex.vue";
+import aprofilePosts from "./adminProfil/aprofilePosts.vue";
+import aigtv from "./adminProfil/aigtv.vue";
+import asavedPosts from "./adminProfil/asavedPosts.vue";
+import ataggedPosts from "./adminProfil/ataggedPosts.vue";
+
 //const tu let yaptım bozlrsa düzelt
 let router = new VueRouter({
   mode: "history",
@@ -56,6 +62,29 @@ let router = new VueRouter({
           path: "/taggedPosts",
           component: taggedPosts,
           meta: { requiresAuth: true }
+        }
+      ]
+    },
+    {
+      path: "/notionofthemotion/profilePosts",
+      component: aprofil,
+
+      children: [
+        {
+          path: "/notionofthemotion/profilePosts",
+          component: aprofilePosts
+        },
+        {
+          path: "/notionofthemotion/igtv",
+          component: aigtv
+        },
+        {
+          path: "/notionofthemotion/savedPosts",
+          component: asavedPosts
+        },
+        {
+          path: "/notionofthemotion/taggedPosts",
+          component: ataggedPosts
         }
       ]
     }

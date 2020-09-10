@@ -3,10 +3,14 @@
     <div class="box">
       <div class="recomHeader">
         <div class="recom-Profile-img">
-          <img :src="profilImg" />
+          <a href="/profilePosts">
+            <img :src="profilImg" />
+          </a>
         </div>
         <div class="recom-Profile-username">
-          <h6>{{username}}</h6>
+          <a href="/profilePosts">
+            <h6>{{username}}</h6>
+          </a>
           <span>{{realname}}</span>
         </div>
       </div>
@@ -19,42 +23,28 @@
             <span class="spanRight">Tümünü Gör</span>
           </div>
         </div>
-        <div class="recom-list-users row justify-content-between">
-          <div class="col-8">
-            <div class="recom-list-user">
-              <div class="recom-list-user-img">
-                <img src="../assets/logo.png" />
-              </div>
-              <div class="recom-list-user-username">
-                <h6>notionofthemotion</h6>
-                <span>instagram'da Yeni</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 follow">
-            <a href="#">
-              <span>Takip Et</span>
-            </a>
-          </div>
-        </div>
-        <div class="recom-list-users row justify-content-between">
-          <div class="col-8">
-            <div class="recom-list-user">
-              <div class="recom-list-user-img">
-                <img src="../assets/alperen2.jpg" />
-              </div>
-              <div class="recom-list-user-username">
-                <h6>alpiş</h6>
-                <span>3 ortak arkadaş</span>
+        <router-link to="/notionofthemotion/profilePosts">
+          <div class="recom-list-users row justify-content-between">
+            <div class="col-8">
+              <div class="recom-list-user">
+                <div class="recom-list-user-img">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/vue-insta-9f903.appspot.com/o/alperen2.jpg?alt=media&token=e38eef0a-92c3-45be-a3d9-2abcb422e569"
+                  />
+                </div>
+                <div class="recom-list-user-username">
+                  <h6>notionofthemotion</h6>
+                  <span>instagram'da Yeni</span>
+                </div>
               </div>
             </div>
+            <div class="col-4 follow">
+              <a href="#">
+                <span>Takip Et</span>
+              </a>
+            </div>
           </div>
-          <div class="col-4 follow">
-            <a href="#">
-              <span>Takip Et</span>
-            </a>
-          </div>
-        </div>
+        </router-link>
       </div>
       <br />
       <div class="recom-list-footer row">
@@ -124,6 +114,12 @@ export default {
   height: 60px;
   border-radius: 50%;
 }
+.recom-Profile-username a {
+  text-decoration: none !important;
+  color: unset;
+  opacity: 0.7;
+}
+
 .recom-Profile-username h6 {
   margin: 0 !important;
   padding: 0 !important;
@@ -162,15 +158,24 @@ export default {
 .recom-list-user {
   display: flex;
   align-items: center;
+  text-decoration: none;
+}
+
+.recom-list-users:hover {
+  text-decoration: none;
 }
 .recom-list-user-username h6 {
   margin-bottom: -4px !important;
   font-size: 15px !important;
+  color: black;
+  text-decoration: none;
+  opacity: 0.9;
 }
 .recom-list-user-username span {
   color: gray;
   font-size: 13px !important;
   margin-top: 0px !important;
+  text-decoration: none;
 }
 
 .recom-list-user-img {
@@ -192,6 +197,10 @@ export default {
   font-weight: 400;
   color: #0095f6 !important;
 }
+.follow a:hover {
+  text-decoration: none;
+}
+
 .recom-list-footer {
   line-height: 1;
   text-align: left;

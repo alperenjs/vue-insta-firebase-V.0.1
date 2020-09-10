@@ -150,11 +150,13 @@ export default {
                         });
                     }
                   });
-                console.log("hesap " + this.newUserId + " için oluşturuldu");
+                console.log(
+                  "hesap BAŞARIYLA " + this.newUserId + " için oluşturuldu"
+                );
               });
 
             // alert("Account created");
-            // this.$router.go("/");
+            // this.$router.go("/profilePosts");
           },
           (err) => {
             alert(err.message);
