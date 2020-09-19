@@ -1,5 +1,8 @@
 <template>
   <div id="home" class="generalBackground">
+    <ul>
+      <li v-for="comment in dpostComments" :key="comment.key">{{comment.dcommentUser}}</li>
+    </ul>
     <div class="container">
       <div class="mediaRow row">
         <div class="col-8">
@@ -16,6 +19,7 @@
               :postText="post.dpostText"
               :profilImg="post.dprofilImg"
               :posterImg="post.dposterImg"
+              :postComments="post.ypostComments"
             ></homePosts>
           </div>
         </div>
@@ -46,6 +50,7 @@ export default {
       dcommentUser: "",
       dcommentText: "",
       dpostComments: [],
+      ypostComments: [],
       did: "",
     };
   },
@@ -76,7 +81,9 @@ export default {
           dpostText: data[key].text,
           dprofilImg: data[key].profilImg,
           dposterImg: data[key].posterImg,
+          ypostComments: [data[key].postComments],
         });
+
         this.postsList.push({
           // key: key,
           key: key,
@@ -85,12 +92,8 @@ export default {
           dpostText: data[key].text,
           dprofilImg: data[key].profilImg,
           dposterImg: data[key].posterImg,
+          ypostComments: data[key].postComments,
         });
-
-        // this.dpostComments.push({
-        //   dcommentUser: data[key].postComments.commentUser,
-        //   dcommentText: data[key].postComments.commentText,
-        // });
       }
     });
 

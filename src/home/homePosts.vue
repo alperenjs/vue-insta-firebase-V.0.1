@@ -125,6 +125,7 @@ export default {
     "commentUser",
     "commentText",
     "postId",
+    "postComments",
   ],
 };
 </script>
