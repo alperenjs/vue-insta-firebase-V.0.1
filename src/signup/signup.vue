@@ -11,24 +11,44 @@
 
             <form>
               <div class="form-group">
-                <label style="float:left" for="file">Bir fotoğraf seç</label>
+                <label style="float: left" for="file">Bir fotoğraf seç</label>
                 <input
                   @change="previewImage"
                   accept="image/*"
                   class="file form-control"
                   type="file"
                 />
-                <input v-model="mail" type="text" class="form-control" placeholder="E-posta" />
-                <input v-model="realname" type="text" class="form-control" placeholder="Adı" />
+                <input
+                  v-model="mail"
+                  type="text"
+                  class="form-control"
+                  placeholder="E-posta"
+                />
+                <input
+                  v-model="realname"
+                  type="text"
+                  class="form-control"
+                  placeholder="Adı"
+                />
                 <input
                   v-model="username"
                   type="text"
                   class="form-control"
                   placeholder="Kullanıcı adı"
                 />
-                <input v-model="password" type="password" class="form-control" placeholder="Şifre" />
+                <input
+                  v-model="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Şifre"
+                />
               </div>
-              <button @click="register" class="MybtnSignup btn btn-primary btn-block">Kaydol</button>
+              <button
+                @click="register"
+                class="MybtnSignup btn btn-primary btn-block"
+              >
+                Kaydol
+              </button>
               <p class="terms">
                 Kaydolarak, Koşullar'ı, Veri İlkesi'ni ve Çerezler İlkesi'ni
                 kabul etmiş olursun.
@@ -36,7 +56,8 @@
             </form>
           </div>
           <div class="right-column-2 text-center">
-            <p>Hesabın var mı?</p>&nbsp;
+            <p>Hesabın var mı?</p>
+            &nbsp;
             <a href="login">Giriş Yap</a>
           </div>
         </div>
@@ -156,7 +177,7 @@ export default {
               });
 
             // alert("Account created");
-            // this.$router.go("/profilePosts");
+            this.$router.go("/profilePosts");
           },
           (err) => {
             alert(err.message);

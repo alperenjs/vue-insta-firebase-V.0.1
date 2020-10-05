@@ -9,9 +9,9 @@
         </div>
         <div class="recom-Profile-username">
           <a href="/profilePosts">
-            <h6>{{username}}</h6>
+            <h6>{{ username }}</h6>
           </a>
-          <span>{{realname}}</span>
+          <span>{{ realname }}</span>
         </div>
       </div>
       <div class="recom-list">
